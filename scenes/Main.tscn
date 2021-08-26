@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/arena.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Mobile/Mobile.tscn" type="PackedScene" id=3]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -32,3 +33,5 @@ drag_margin_right = 0.5
 drag_margin_bottom = 0.5
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="Mobile" parent="." instance=ExtResource( 3 )]
