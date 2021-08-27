@@ -13,6 +13,7 @@ enum State {
 export var max_health := 1.0
 export var max_stamina := 1.0
 export var speed := 60
+export var side : int = Globals.Side.AI setget set_side
 
 onready var sprite := $Sprite
 onready var anim_p := $AnimationPlayer
@@ -24,6 +25,9 @@ var vel := Vector2()
 var dir := Vector2() setget set_direction
 var facing := 1 setget set_facing
 var state : int = State.IDLE setget set_state
+
+var path : PoolVector2Array
+var path_idx := 0
 
 func _ready() -> void:
 	health = max_health
@@ -74,3 +78,6 @@ func set_health(value) -> void:
 
 func set_stamina(value) -> void:
 	stamina = clamp(value, 0.0, max_stamina)
+
+func set_side(value) -> void:
+	side = clamp(value, 0, Globals.Side.size() - 1)

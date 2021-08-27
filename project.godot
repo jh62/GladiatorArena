@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "YSort",
+"class": "EnemyAI",
+"language": "GDScript",
+"path": "res://scenes/EnemyAI/EnemyAI.gd"
+}, {
+"base": "TileMap",
+"class": "Map",
+"language": "GDScript",
+"path": "res://scripts/Map/Map.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Mobile",
 "language": "GDScript",
 "path": "res://scenes/Mobile/Mobile.gd"
 } ]
 _global_script_class_icons={
+"EnemyAI": "",
+"Map": "",
 "Mobile": ""
 }
 
@@ -27,14 +39,15 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Globals="*res://scripts/autoload/Globals.gd"
 Player="*res://scripts/autoload/Player.gd"
 
 [display]
 
 window/size/width=320
 window/size/height=180
-window/size/test_width=1280
-window/size/test_height=720
+window/size/test_width=640
+window/size/test_height=480
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
