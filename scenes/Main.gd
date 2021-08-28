@@ -8,4 +8,4 @@ func _ready() -> void:
 	Player.mob = $YSort/Player
 
 func _process(delta: float) -> void:
-	pass
+	$CanvasLayer/TextureProgress.value = Player.mob.max_health * (Player.mob.health / Player.mob.max_health)

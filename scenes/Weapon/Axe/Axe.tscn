@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/res/weapons/axe.tres" type="Texture" id=1]
+[ext_resource path="res://scenes/Weapon/Weapon.tscn" type="PackedScene" id=2]
+
+[node name="Axe" instance=ExtResource( 2 )]
+
+[node name="SpriteWeapon" parent="." index="0"]
+texture = ExtResource( 1 )
+offset = Vector2( 3.81142, -0.13913 )

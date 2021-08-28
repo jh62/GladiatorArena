@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/Mobile/Mobile.gd" type="Script" id=1]
-[ext_resource path="res://assets/graphics/mobile/human/human.png" type="Texture" id=2]
+[ext_resource path="res://assets/res/mobs/human.tres" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/particle_blood.png" type="Texture" id=3]
+[ext_resource path="res://assets/sfx/step_sand_1.wav" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.0
@@ -9,7 +11,8 @@ height = 4.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack"
-length = 0.4
+length = 0.2
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -17,7 +20,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 8, 9, 10, 11 ]
@@ -45,6 +48,50 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hands:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -0.385565, 2.31291 ), Vector2( -6.57275, -7.67498 ), Vector2( 6.86228, 1.51741 ), Vector2( 7.39261, 3.19679 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hands:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 102.934, -16.2087, 91.3138, 115.317 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ false ],
+"method": "set_weapon_enabled"
+}, {
+"args": [ true ],
+"method": "set_weapon_enabled"
+}, {
+"args": [ false ],
+"method": "set_weapon_enabled"
+} ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -113,18 +160,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [ false ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=5]
 resource_name = "idle"
@@ -143,7 +178,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/path = NodePath("CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -155,16 +190,42 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/path = NodePath("Hands:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -1.35784, -1.31102 ), Vector2( -1.77924, -0.327754 ), Vector2( -2.20064, -0.795975 ), Vector2( -3.37119, -2.94979 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hands:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 35.8815, 30.327, 42.3914, 21.1468 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"values": [ {
+"args": [ false ],
+"method": "set_weapon_enabled"
+} ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -262,7 +323,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/path = NodePath("CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -274,19 +335,99 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/path = NodePath("Hands:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -0.827509, 1.34063 ), Vector2( 5.44806, -0.780685 ), Vector2( 6.15517, -3.60911 ), Vector2( 4.3874, -7.32142 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hands:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 102.934, 66.7046, 36.1262, 13.7708 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "set_weapon_enabled"
+} ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("AudioStreamPlayer2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+}, {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "test"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ 0 ]
 }
 
+[sub_resource type="Gradient" id=10]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+width = 512
+
+[sub_resource type="ParticlesMaterial" id=12]
+lifetime_randomness = 1.0
+flag_disable_z = true
+direction = Vector3( -1, 0, 0 )
+spread = 18.0
+gravity = Vector3( 0, 128, 0 )
+initial_velocity = 203.14
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 11 )
+
 [node name="Mobile" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 15
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -297,7 +438,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 hframes = 4
 vframes = 7
-frame = 27
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -308,3 +449,31 @@ anims/idle = SubResource( 5 )
 anims/kick = SubResource( 6 )
 anims/parry = SubResource( 7 )
 anims/run = SubResource( 8 )
+anims/test = SubResource( 9 )
+
+[node name="Hands" type="Position2D" parent="."]
+position = Vector2( 5.44806, -0.780685 )
+rotation = 1.16421
+
+[node name="Particles2D" type="Particles2D" parent="."]
+rotation = 0.754427
+scale = Vector2( 0.25, 0.25 )
+emitting = false
+amount = 100
+lifetime = 0.5
+explosiveness = 0.53
+process_material = SubResource( 12 )
+texture = ExtResource( 3 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+max_distance = 120.0
+area_mask = 2
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 0 )
+collision_mask = 4
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
